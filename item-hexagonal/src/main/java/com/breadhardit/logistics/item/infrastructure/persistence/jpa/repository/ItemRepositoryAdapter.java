@@ -2,6 +2,7 @@ package com.breadhardit.logistics.item.infrastructure.persistence.jpa.repository
 
 import com.breadhardit.logistics.item.application.port.ItemRepositoryPort;
 import com.breadhardit.logistics.item.domain.Item;
+import com.breadhardit.logistics.item.infrastructure.persistence.jpa.repository.entity.ItemEntity;
 import com.breadhardit.logistics.item.infrastructure.persistence.jpa.repository.mapper.ItemEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,11 @@ public class ItemRepositoryAdapter implements ItemRepositoryPort {
     @Override
     public List<Item> getItems() {
         return itemJpaRepository.findAll().stream().map(itemEntityMapper::toDomain).toList();
+    }
+
+    @Override
+    public List<Item> findByName(String name) {
+        return itemJpaRepository.findByName(name).stream().map(itemEntityMapper::toDomain).toList();
     }
 
     @Override

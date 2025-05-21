@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface ItemRepositoryPort {
     List<Item> getItems();
+    List<Item> findByName(String name);
     Optional<Item> getItemById(String id);
     void deleteItem(String id);
     void updateItem(Item item);
